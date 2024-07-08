@@ -39,5 +39,5 @@ def test_anyadir_entradas_a_grupo():
     assert grupo.total == 23 + 14 + 18
 
     grupo.add_entrada(2)
-    assert grupo.num_entrada == 4
+    assert grupo.num_entradas == 4
     assert grupo.total == 23 + 14 + 18

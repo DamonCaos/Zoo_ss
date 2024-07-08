@@ -33,4 +33,7 @@ class Grupo_Entrada:
         En funcion de la edad. crear una entrada e incrementar el contador de entradas 
         con el precio de la entrada nueva incrementar el total
         """
-        
+        nueva_entrada = Entrada(edad)
+        self.num_entradas += 1
+        self.total += nueva_entrada.precio
+
