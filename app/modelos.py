@@ -53,7 +53,5 @@ class Grupo_Entrada:
         return self.tipos_entrada[tipo]['Q']
 
     def subtotal_tipo(self, tipo: TipoEntrada):
-        cantidad = self.tipos_entrada[tipo]['Q']
-        precio = self.tipos_entrada[tipo]['P']
-        return cantidad * precio
+        return self.tipos_entrada[tipo]['Q'] * self.tipos_entrada[tipo]['P']
         
