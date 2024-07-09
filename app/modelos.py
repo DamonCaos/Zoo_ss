@@ -10,6 +10,8 @@ class TipoEntrada(Enum):
 
 class Entrada:
     def __init__(self, edad: int):
+        if edad < 0:
+            raise ValueError('La edad no puede ser negativa')
         if edad  <= 2:
             self.tipo = TipoEntrada.BEBE
             self.precio = 0
