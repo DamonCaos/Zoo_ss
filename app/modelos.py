@@ -1,10 +1,10 @@
 from enum import Enum, auto
 
 class TipoEntrada(Enum):
-    BEBE = auto()
-    NIÑO = auto()
-    ADULTO = auto()
-    JUBILADO = auto()
+    BEBE = 0
+    NIÑO = 14
+    ADULTO = 23
+    JUBILADO = 18
 
 
 
