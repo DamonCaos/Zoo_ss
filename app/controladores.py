@@ -30,15 +30,7 @@ class Zoo:
                 edad = int(edad)
 
                 self.grupo_entradas.add_entrada(edad)
-            
-    
-                
-                
-                
-                
 
-
-        
 """
 with Screen_manager:
     #Instanciamos todo lo necesario, modelos y componentes gráficos
