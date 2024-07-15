@@ -10,6 +10,8 @@ class TipoEntrada(Enum):
 
 class Entrada:
     def __init__(self, edad: int):
+        #self.__validate_edad(edad)
+        #self.__edad = edad
         if edad < 0:
             raise ValueError('La edad no puede ser negativa')
         if edad  <= 2:
@@ -29,13 +31,16 @@ class Grupo_Entrada:
     def __init__(self):
         self.total = 0
         self.num_entradas = 0
-        self.tipos_entrada = {
+        self.tipos_entrada = {}
+        for tipo in TipoEntrada:
+            self.tipos_entrada[tipo] = {'Q': 0, 'P': tipo.value}
+        """self.tipos_entrada = {
             TipoEntrada.BEBE: {'Q': 0, 'P': 0},
             TipoEntrada.NIÑO: {'Q': 0, 'P': 14},
             TipoEntrada.ADULTO: {'Q': 0, 'P': 23},
             TipoEntrada.JUBILADO: {'Q': 0, 'P': 18}
 
-        }
+        }"""
 
     def add_entrada(self, edad):
         """
