@@ -1,18 +1,27 @@
 from enum import Enum, auto
+from collections import namedtuple
+
+Datos_Entrada = namedtuple("Datos_Entrada", ("precio", "edad_max"))
 
 class TipoEntrada(Enum):
-    BEBE = 0
-    NIÑO = 14
-    ADULTO = 23
-    JUBILADO = 18
+    BEBE = Datos_Entrada(0, 2)
+    NIÑO = Datos_Entrada(14, 12)
+    ADULTO = Datos_Entrada(23, 65)
+    JUBILADO = Datos_Entrada(18, 100)
 
 
 
 class Entrada:
     def __init__(self, edad: int):
-        #self.__validate_edad(edad)
+        self.validate_edad(edad)
         #self.__edad = edad
-        if edad < 0:
+
+        for tipo in TipoEntrada:
+            if edad <=tipo.value.edad_max:
+                self.tipo = tipo
+                self.precio = tipo.value.precio
+                break
+    """ if edad < 0:
             raise ValueError('La edad no puede ser negativa')
         if edad  <= 2:
             self.tipo = TipoEntrada.BEBE
@@ -25,15 +34,19 @@ class Entrada:
             self.precio = 23
         else:
             self.tipo = TipoEntrada.JUBILADO
-            self.precio = 18
+            self.precio = 18"""
 
+    def validate_edad(self, edad):
+        if edad < 0:
+            raise ValueError("La edad no puede ser negativa")
+        
 class Grupo_Entrada:
     def __init__(self):
         self.total = 0
         self.num_entradas = 0
         self.tipos_entrada = {}
         for tipo in TipoEntrada:
-            self.tipos_entrada[tipo] = {'Q': 0, 'P': tipo.value}
+            self.tipos_entrada[tipo] = {'Q': 0, 'P': tipo.value.precio}
         """self.tipos_entrada = {
             TipoEntrada.BEBE: {'Q': 0, 'P': 0},
             TipoEntrada.NIÑO: {'Q': 0, 'P': 14},
