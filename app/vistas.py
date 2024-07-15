@@ -13,7 +13,7 @@
 10    EDAD: 
 11    CONF
 """
-from app.modelos import Grupo_Entrada, TipoEntrada
+from app.modelos import Grupo_Entrada, TipoEntrada, Entrada
 from simple_screen import locate, Print, cls, Screen_manager, Input
 
 class VistaGrupo:
@@ -35,16 +35,33 @@ class VistaGrupo:
         locate(self.x, self.y + 7, '-------------------------------------')
         locate(self.x, self.y + 8, f'                     {self.grupo.num_entradas:3d}    {self.grupo.total:8.2f}')
 
-class VistaEntrada:
+class VistaInput:
     def __init__(self, etiqueta: str, x, y):
         self.etiqueta = etiqueta    
         self.y = y
         self.x = x
+        self.value = ""
     
 
     def paint(self):
         locate(self.x, self.y, self.etiqueta)
         return Input()
+    
+class VistaInputEdad(VistaInput):
+    def paint(self):
+        while True:
+            cadena = super().paint()
+            
+                
+            try:
+                edad = int(cadena)
+                Entrada(edad)
+                return edad
+            except ValueError as e:
+                if cadena == "":
+                    return cadena
+                locate(self.x, self.y + 1, "No puedes, vuelve a introducir un numero correcto")
+
     
 print(__name__)
 if __name__ == "__main__":
@@ -53,6 +70,6 @@ if __name__ == "__main__":
         grupo.add_entrada(2)
         vg = VistaGrupo(grupo, 1, 5)  # Definir x y y aquí
         vg.paint()
-        vedad = VistaEntrada('EDAD: ', 1, 10)
+        vedad = VistaInput('EDAD: ', 1, 10)
         vedad.paint
         Input()

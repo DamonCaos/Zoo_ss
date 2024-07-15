@@ -39,6 +39,8 @@ class Entrada:
     def validate_edad(self, edad):
         if edad < 0:
             raise ValueError("La edad no puede ser negativa")
+        elif edad > 99:
+            raise ValueError("La edad no puede ser mayor de 99 años")
         
 class Grupo_Entrada:
     def __init__(self):
